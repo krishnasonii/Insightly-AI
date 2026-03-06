@@ -1,0 +1,152 @@
+.background-engine {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: #020617;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+
+.mesh-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sphere {
+    position: absolute;
+    filter: blur(120px);
+    opacity: 0.4;
+    border-radius: 50%;
+    animation: meshFloat 25s infinite alternate ease-in-out;
+}
+
+.sphere-purple {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+    top: -10%;
+    left: -5%;
+}
+
+.sphere-indigo {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+    bottom: -10%;
+    right: -5%;
+    animation-duration: 20s;
+    animation-delay: -5s;
+}
+
+.sphere-pink {
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, #f43f5e 0%, transparent 70%);
+    top: 20%;
+    right: 10%;
+    animation-duration: 30s;
+    animation-delay: -10s;
+}
+
+@keyframes meshFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(5%, 10%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-5%, -5%) scale(0.9);
+    }
+}
+
+
+.stars-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle linear infinite;
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    20% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    80% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+
+.particles-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.floating-particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: rising linear infinite;
+}
+
+@keyframes rising {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.5;
+    }
+
+    90% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
