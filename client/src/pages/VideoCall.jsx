@@ -26,7 +26,7 @@ const VideoCall = () => {
     const processedPeers = useRef(new Set());
 
     useEffect(() => {
-        socketRef.current = io('http://localhost:5001', {
+        socketRef.current = io(import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001', {
             auth: { token: localStorage.getItem('token') },
             transports: ['websocket'],
             reconnectionAttempts: 10

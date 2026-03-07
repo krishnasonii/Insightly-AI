@@ -3,14 +3,14 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-const API_URL = 'http://localhost:5001/api';
+const API_URL = `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001'}/api`;
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [loading, setLoading] = useState(true);
 
-    
+
     const setAuthSession = useCallback((token, user) => {
         if (token) {
             localStorage.setItem('token', token);
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    
+
     useEffect(() => {
         const initAuth = async () => {
             const savedToken = localStorage.getItem('token');
@@ -39,10 +39,10 @@ export const AuthProvider = ({ children }) => {
             }
 
             try {
-                
+
                 axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
 
-                
+
                 const res = await axios.get(`${API_URL}/auth/me`);
                 setAuthSession(savedToken, res.data);
             } catch (err) {
@@ -56,15 +56,15 @@ export const AuthProvider = ({ children }) => {
         initAuth();
     }, [setAuthSession]);
 
-    
+
     useEffect(() => {
         const interceptor = axios.interceptors.response.use(
             (response) => response,
             (error) => {
                 if (error.response?.status === 401) {
-                    
+
                     setAuthSession(null, null);
-                    
+
                 }
                 return Promise.reject(error);
             }
