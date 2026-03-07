@@ -554,9 +554,21 @@ const VideoCall = () => {
                     background: #f59e0b;
                     box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
                 }
-                .btn-end:hover, .btn-leave:hover {
-                    transform: translateY(-2px);
-                    filter: brightness(1.1);
+                @media (max-width: 1024px) {
+                    .video-layout { grid-template-columns: 1fr; height: auto; }
+                    .video-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); padding: 1rem; }
+                    .video-side-panel { height: 500px; }
+                }
+                @media (max-width: 768px) {
+                    .video-controls-wrapper { padding: 0.75rem 1rem; width: 100%; border-radius: 1.5rem; gap: 1rem; }
+                    .btn-control { width: 48px; height: 48px; border-radius: 1rem; }
+                    .btn-end, .btn-leave { padding: 0 1.25rem; height: 48px; font-size: 0.9rem; }
+                    .video-grid { grid-template-columns: 1fr; }
+                    .video-info .badge { font-size: 0.65rem; padding: 0.4rem 0.75rem; }
+                }
+                @media (max-width: 480px) {
+                    .btn-end span, .btn-leave span { display: none; }
+                    .btn-end, .btn-leave { width: 48px; padding: 0; justify-content: center; }
                 }
 
                 .video-side-panel {

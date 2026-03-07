@@ -12,7 +12,7 @@ const Auth = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    
+
     const from = location.state?.from?.pathname || "/";
 
     const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ const Auth = () => {
             } else {
                 await signup(formData.username, formData.email, formData.password);
             }
-            
+
             navigate(from, { replace: true });
         } catch (err) {
             setError(err.response?.data?.msg || 'Something went wrong');
@@ -361,10 +361,24 @@ const Auth = () => {
 
                 @media (max-width: 480px) {
                     .auth-card {
-                        padding: 2.5rem 1.75rem;
+                        padding: 2rem 1.25rem;
+                        border-radius: 1rem;
                     }
                     .auth-page {
-                        padding: 1rem;
+                        padding: 1rem 0.75rem;
+                    }
+                    .logo-icon-wrapper {
+                        width: 48px;
+                        height: 48px;
+                    }
+                    .logo-emoji {
+                        font-size: 1.5rem;
+                    }
+                    .brand-name {
+                        font-size: 1.25rem;
+                    }
+                    .auth-header h2 {
+                        font-size: 1.5rem;
                     }
                 }
             `}</style>

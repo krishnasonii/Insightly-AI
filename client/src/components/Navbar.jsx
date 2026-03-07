@@ -217,7 +217,15 @@ const Navbar = () => {
         }
         @media (max-width: 768px) {
           .nav-center { display: none; }
-          .navbar-wrapper { padding: 1rem 0; }
+          .navbar-wrapper { padding: 0.75rem 0; }
+          .nav-container { padding: 0.5rem 1rem; }
+          .logo-text { font-size: 1.1rem; }
+          .user-badge { padding: 0.3rem; }
+          .user-details { display: none; }
+        }
+        @media (max-width: 480px) {
+           .auth-actions span { display: none; }
+           .auth-actions .nav-link { padding: 0.5rem; }
         }
       `}</style>
     </nav>

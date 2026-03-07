@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div className="home-wrapper fade-in">
-      {}
+      { }
       <div className="decor-elements">
         <div className="decor-shape shape-1"></div>
         <div className="decor-shape shape-2"></div>
@@ -89,7 +89,7 @@ const Home = () => {
             </div>
           </div>
 
-          {}
+          { }
           <div className="bento-item glass">
             <div className="card-icon-wrapper blue">
               <Target size={24} />
@@ -98,7 +98,7 @@ const Home = () => {
             <p>Distill long meetings into concise takeaways instantly.</p>
           </div>
 
-          {}
+          { }
           <div className="bento-item glass">
             <div className="card-icon-wrapper pink">
               <ShieldCheck size={24} />
@@ -107,7 +107,7 @@ const Home = () => {
             <p>Enterprise-grade AES-256 encryption for all data.</p>
           </div>
 
-          {}
+          { }
           <div className="bento-item bento-wide glass">
             <div className="wide-layout">
               <div className="card-icon-wrapper green">
@@ -120,13 +120,13 @@ const Home = () => {
             </div>
           </div>
 
-          {}
+          { }
           <div className="bento-item bento-small glass">
             <Globe size={20} className="muted-icon" />
             <span className="small-label">Global Scale</span>
           </div>
 
-          {}
+          { }
           <div className="bento-item bento-small glass">
             <Cpu size={20} className="muted-icon" />
             <span className="small-label">Edge Compute</span>
@@ -335,9 +335,21 @@ const Home = () => {
 
         @media (max-width: 1024px) {
             h1 { font-size: 3.8rem; }
+            .hero-subtitle { font-size: 1.2rem; }
             .bento-grid {
               grid-template-columns: repeat(2, 1fr);
             }
+        }
+        @media (max-width: 768px) {
+            .home-wrapper { padding: 4rem 0; }
+            h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+            .hero-subtitle { font-size: 1rem; margin-bottom: 2.5rem; }
+            .action-hub { flex-direction: column; width: 100%; padding: 1.5rem; border-radius: 2rem; gap: 1rem; }
+            .duration-picker { width: 100%; text-align: left; }
+            .select-container { width: 100%; }
+            .divider-v { width: 100%; height: 1px; }
+            .main-cta-btn { width: 100%; justify-content: center; }
+            .hero-stats { gap: 2rem; flex-wrap: wrap; justify-content: center; margin-top: 3rem; }
         }
         @media (max-width: 640px) {
             .bento-grid {
@@ -345,6 +357,8 @@ const Home = () => {
               grid-auto-rows: auto;
             }
             .bento-large, .bento-wide { grid-column: span 1; grid-row: span 1; }
+            .bento-item { padding: 1.5rem; }
+            .bento-content h3 { font-size: 1.5rem; }
         }
       `}</style>
     </div>

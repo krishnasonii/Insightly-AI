@@ -253,7 +253,19 @@ const LiveRecap = () => {
                 .btn-util { flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--surface-border); border-radius: 0.75rem; color: var(--text-muted); transition: all 0.3s ease; }
                 .btn-util:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); }
                 
-                @media (max-width: 1024px) { .live-container { grid-template-columns: 1fr; height: auto; } }
+                @media (max-width: 1024px) { 
+                    .live-container { grid-template-columns: 1fr; height: auto; padding-bottom: 2rem; } 
+                    .live-wrapper { padding: 1rem; }
+                }
+                @media (max-width: 768px) {
+                    .live-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.25rem; }
+                    .timer-badge { width: 100%; justify-content: center; font-size: 1.25rem; }
+                    .transcript-board { height: 400px; padding: 1.25rem; }
+                    .text { font-size: 1rem; }
+                    .control-card { padding: 1.25rem; }
+                    .utility-bar { flex-wrap: wrap; }
+                    .btn-util { min-width: 40px; }
+                }
             `}</style>
         </div>
     );

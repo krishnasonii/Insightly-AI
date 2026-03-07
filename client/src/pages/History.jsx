@@ -422,11 +422,24 @@ const History = () => {
                 .empty-state h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
                 .empty-state p { color: var(--text-muted); }
 
+                @media (max-width: 1024px) {
+                    .history-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+                }
                 @media (max-width: 768px) {
-                    .history-header { flex-direction: column; text-align: center; padding: 2rem; }
-                    .detail-modal { max-height: 95vh; border-radius: 2rem; }
-                    .modal-header, .modal-scroll-area { padding: 1.5rem; }
-                    .modal-title h2 { font-size: 1.5rem; }
+                    .history-header { flex-direction: column; text-align: center; padding: 2rem 1rem; gap: 1.5rem; }
+                    .header-top { flex-direction: column; gap: 1rem; }
+                    .search-box { width: 100%; }
+                    .history-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+                    .history-card { padding: 1.5rem; border-radius: 2rem; }
+                    
+                    .detail-modal { max-height: 98vh; border-radius: 1.5rem; width: 100%; }
+                    .modal-header { padding: 1.25rem; flex-direction: column; gap: 1rem; align-items: flex-start; }
+                    .modal-title { gap: 1rem; }
+                    .icon-main { width: 48px; height: 48px; border-radius: 1rem; }
+                    .modal-title h2 { font-size: 1.25rem; }
+                    .btn-close { position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; }
+                    .modal-scroll-area { padding: 1.5rem 1rem; gap: 2rem; }
+                    .summary-block, .transcript-block { padding: 1.5rem; border-radius: 1.5rem; font-size: 0.95rem; }
                 }
             `}</style>
     </div>
