@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Search, ExternalLink, Calendar, Clock, MessageSquare, Sparkles, X, ChevronRight, Hash } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 const History = () => {
   const [meetings, setMeetings] = useState([]);
@@ -19,7 +20,7 @@ const History = () => {
       }
 
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001'}/api/meetings`, {
+        const res = await axios.get(`${API_BASE_URL}/api/meetings`, {
           headers: { 'x-auth-token': token }
         });
         setMeetings(res.data);

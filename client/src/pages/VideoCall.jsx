@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Peer from 'simple-peer';
 import { io } from 'socket.io-client';
 import { Camera, Mic, MicOff, Video, VideoOff, PhoneOff, Users, MessageSquare, Shield, Zap, Sparkles } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 const VideoCall = () => {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ const VideoCall = () => {
     const processedPeers = useRef(new Set());
 
     useEffect(() => {
-        socketRef.current = io(import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001', {
+        socketRef.current = io(API_BASE_URL, {
             auth: { token: localStorage.getItem('token') },
             transports: ['websocket'],
             reconnectionAttempts: 10
