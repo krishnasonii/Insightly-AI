@@ -4,6 +4,7 @@ import Peer from 'simple-peer';
 import { io } from 'socket.io-client';
 import { Camera, Mic, MicOff, Video, VideoOff, PhoneOff, Users, MessageSquare, Shield, Zap, Sparkles } from 'lucide-react';
 import { API_BASE_URL } from '../config';
+import AIInsightRenderer from '../components/AIInsightRenderer';
 
 const VideoCall = () => {
     const navigate = useNavigate();
@@ -212,7 +213,10 @@ const VideoCall = () => {
                         </div>
                         <h2>Meeting Insights</h2>
                     </div>
-                    <div className="summary-content" dangerouslySetInnerHTML={{ __html: summary.replace(/\n/g, '<br/>') }} />
+                    <div className="summary-content">
+                        <AIInsightRenderer content={summary} />
+                    </div>
+
                     <button className="btn-action primary" onClick={() => navigate('/history')}>
                         Finish & View History
                     </button>
@@ -695,12 +699,14 @@ const VideoCall = () => {
                 .summary-content {
                     flex: 1;
                     overflow-y: auto;
-                    font-size: 1.1rem;
-                    line-height: 1.8;
-                    color: var(--text-muted);
-                    padding-right: 1.5rem;
-                    margin-bottom: 3rem;
+                    padding-right: 1rem;
+                    margin-bottom: 2rem;
+                    scrollbar-width: thin;
+                    scrollbar-color: var(--primary) transparent;
                 }
+                .summary-content::-webkit-scrollbar { width: 6px; }
+                .summary-content::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
                 .btn-action {
                     width: 100%;
                     padding: 1.25rem;

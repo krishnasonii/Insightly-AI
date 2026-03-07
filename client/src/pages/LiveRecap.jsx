@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Square, Copy, FileText, Volume2, Video, Clock } from 'lucide-react';
 import { useAudioRecorder } from '../hooks/useAudioRecorder';
+import AIInsightRenderer from '../components/AIInsightRenderer';
 import socket from '../utils/socket';
 import { jsPDF } from 'jspdf';
 import api from '../api/axios';
@@ -194,14 +195,13 @@ const LiveRecap = () => {
                         <h3>AI Insights</h3>
                         <div className="summary-content">
                             {summary ? (
-                                <div className="summary-text">
-                                    {Array.isArray(summary) ? summary.map((s, i) => <p key={i}>• {s}</p>) : summary}
-                                </div>
+                                <AIInsightRenderer content={summary} />
                             ) : (
                                 <p className="empty-state">AI insights will appear here once the session is finalized.</p>
                             )}
                         </div>
                         <div className="utility-bar">
+
                             <button className="btn-util" onClick={copySummary} title="Copy Summary">
                                 <Copy size={18} />
                             </button>
@@ -246,9 +246,11 @@ const LiveRecap = () => {
                 .btn-danger:hover { background: #ef4444; color: white; transform: translateY(-3px); }
                 .btn-control:hover:not(.disabled) { transform: translateY(-3px); filter: brightness(1.1); }
 
-                .summary-card { flex: 1; display: flex; flex-direction: column; }
-                .summary-content { flex: 1; overflow-y: auto; margin-bottom: 1.5rem; }
-                .summary-text { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
+                .summary-card { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+                .summary-content { flex: 1; overflow-y: auto; margin-bottom: 1.5rem; scrollbar-width: thin; scrollbar-color: var(--primary) transparent; }
+                .summary-content::-webkit-scrollbar { width: 6px; }
+                .summary-content::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
                 .utility-bar { display: flex; gap: 0.75rem; border-top: 1px solid var(--surface-border); pt: 1.5rem; }
                 .btn-util { flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--surface-border); border-radius: 0.75rem; color: var(--text-muted); transition: all 0.3s ease; }
                 .btn-util:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); }
@@ -267,7 +269,7 @@ const LiveRecap = () => {
                     .btn-util { min-width: 40px; }
                 }
             `}</style>
-        </div>
+        </div >
     );
 };
 
