@@ -86,12 +86,26 @@ const Navbar = () => {
         </div>
       </div>
 
+      <div className="mobile-top-nav">
+        {navItems.map((item) => (
+          <NavLink
+            key={item.id}
+            to={item.path}
+            className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}
+            onClick={item.id === 'home' ? handleHomeClick : undefined}
+          >
+            <item.icon size={20} />
+            <span>{item.label}</span>
+          </NavLink>
+        ))}
+      </div>
+
       <style>{`
         .navbar-wrapper {
           position: sticky;
           top: 0;
           z-index: 1000;
-          padding: 1.5rem 0;
+          padding: 1.5rem 0 0.5rem 0;
           transition: all 0.3s ease;
         }
         .nav-container {
@@ -211,13 +225,56 @@ const Navbar = () => {
           transform: rotate(15deg);
         }
 
+        /* Mobile Top Nav */
+        .mobile-top-nav {
+          display: none;
+          width: 95%;
+          max-width: 500px;
+          background: rgba(15, 23, 42, 0.8);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 1.5rem;
+          padding: 0.4rem;
+          justify-content: space-around;
+          align-items: center;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          margin: 1rem auto 0 auto;
+        }
+
+        .mobile-nav-link {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.2rem;
+          color: var(--text-muted);
+          text-decoration: none;
+          padding: 0.5rem 0.25rem;
+          border-radius: 1rem;
+          transition: all 0.3s ease;
+          flex: 1;
+        }
+
+        .mobile-nav-link span {
+          font-size: 0.6rem;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        .mobile-nav-link.active {
+          color: white;
+          background: var(--grad-main);
+          box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
         @media (max-width: 1024px) {
           .nav-links span { display: none; }
           .nav-link { padding: 0.6rem 0.8rem; }
         }
         @media (max-width: 768px) {
           .nav-center { display: none; }
-          .navbar-wrapper { padding: 0.75rem 0; }
+          .mobile-top-nav { display: flex; }
+          .navbar-wrapper { padding: 0.75rem 0 0.5rem 0; }
           .nav-container { padding: 0.5rem 1rem; }
           .logo-text { font-size: 1.1rem; }
           .user-badge { padding: 0.3rem; }

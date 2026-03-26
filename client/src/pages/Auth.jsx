@@ -19,7 +19,7 @@ const Auth = () => {
         e.preventDefault();
         setError('');
         setLoading(true);
-        try {
+        try {    
             if (isLogin) {
                 await login(formData.email, formData.password);
             } else {
